@@ -85,10 +85,23 @@ If using separate Python files:
 | `rk4_solver.py` | RK4 numerical solver |
 | `simulation.py` | Runs simulations and generates plots |
 
-Reviewers should run:
+TO RUN CODE 
+How to Run the Code
+Option 1: Jupyter Notebook
 
-```bash
-simulation.py
+Open:
+
+simulation.ipynb
+
+Run all cells.
+
+Option 2: Python Script
+
+Run:
+
+python simulation.py
+
+
 
 
 
