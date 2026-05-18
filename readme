@@ -1,0 +1,246 @@
+# Numerical Methods for Disease Spread Using SIR Models
+
+The purpose of this project is to explore how numerical methods such as Euler’s Method and the Runge-Kutta 4th Order Method (RK4) can model and predict the spread of infectious diseases using the SIR model. Traditionally, disease spread is represented using systems of ordinary differential equations (ODEs), which describe how populations evolve over time:
+
+dS/dt = -βSI/N
+
+dI/dt = βSI/N - γI
+
+dR/dt = γI
+
+
+Instead of solving these equations analytically, this project uses numerical approximation methods to simulate how disease spreads throughout a population over time. The project aims to demonstrate how different numerical methods approximate the behavior of infectious disease models and compare their accuracy and stability.
+
+Each compartment represents a portion of the population:
+
+* **Susceptible (S)** — individuals who can become infected
+* **Infected (I)** — individuals currently infected
+* **Recovered (R)** — individuals who have recovered and gained immunity
+
+Over time, the interaction between these groups produces epidemic curves that describe how disease spreads and eventually declines.
+
+---
+
+# System Setup
+
+* The system represents a closed population with no births or deaths.
+* All individuals begin in one of the three SIR compartments.
+* Initially, most of the population is susceptible, while a small number are infected.
+* The total population remains constant:
+
+N=S+I+R
+
+Initial conditions used in the simulations:
+
+* Population size: `N = 1000`
+* Initial susceptible population: `S₀ = 990`
+* Initial infected population: `I₀ = 10`
+* Initial recovered population: `R₀ = 0`
+
+Model parameters:
+
+* Infection rate: `β = 0.3`
+* Recovery rate: `γ = 0.1`
+
+Simulation interval:
+
+* `0 ≤ t ≤ 100`
+
+---
+
+# Numerical Methods
+
+Each population evolves according to a numerical approximation process.
+
+## Euler Method
+
+Euler’s Method approximates solutions using:
+
+y(n+1) = y(n) + h f(t(n), y(n))
+
+
+The method updates the populations step-by-step using the slope at the current point.
+
+This project applies Euler’s Method to:
+
+* susceptible population
+* infected population
+* recovered population
+
+The goal is to observe how timestep size affects numerical stability and accuracy.
+
+---
+
+## Runge-Kutta 4th Order Method (RK4)
+
+RK4 improves accuracy by using multiple slope estimates at each step:
+
+
+y(n+1) = y(n) + (h/6)(k1 + 2k2 + 2k3 + k4)
+
+RK4 generally produces more stable and accurate results than Euler’s Method, especially for larger time intervals.
+
+This project compares RK4 and Euler solutions under the same initial conditions and parameter values.
+
+---
+
+# Visualization Goals
+
+The project generates plots showing:
+
+* susceptible population over time
+* infected population over time
+* recovered population over time
+* comparison between Euler and RK4 methods
+* infection peak behavior
+* heatmap style visualizations inspired by diffusion simulations
+
+The visualizations help show how disease spreads, peaks, and eventually declines within the population.
+
+---
+
+# Organization
+
+`simulation.py` — runs the SIR simulations and generates plots
+
+`sir_model.py` — defines the SIR differential equations
+
+`euler_solver.py` — contains Euler numerical solver
+
+`rk4_solver.py` — contains RK4 numerical solver
+
+`data/` — stores simulation output data and possible real-world datasets
+
+`results/` — stores plots, comparisons, and visualizations
+
+`docs/` — contains reports and project explanations
+
+(subject to change)
+
+---
+
+# Running the Code
+
+The two main important files are **simulation.py** and **simulation.ipynb**.
+
+To execute the code:
+
+```bash
+python simulation.py
+```
+
+Or open:
+
+```bash
+simulation.ipynb
+```
+
+and run all cells.
+
+This should generate:
+
+* SIR population plots
+* Euler vs RK4 comparison graphs
+* infection peak comparisons
+* heatmap style visualizations
+
+You can change the parameters inside the simulation to test different epidemic scenarios.
+
+For example:
+
+* changing infection rate `β`
+* changing recovery rate `γ`
+* changing timestep size `h`
+* changing initial infected population
+
+You will notice that decreasing the timestep size generally improves numerical accuracy, especially for Euler’s Method.
+
+---
+
+# Resources
+
+*Introduction to Numerical Analysis by Josef Stoer and Roland Bulirsch* — reference for numerical methods and differential equation solvers
+
+*Numerical Methods for Engineers by Steven Chapra and Raymond Canale* — reference for Euler and RK4 methods
+
+*Modeling Infectious Diseases in Humans and Animals by Keeling and Rohani* — reference for epidemic modeling and SIR systems
+
+*Python Documentation for NumPy and Matplotlib* — used for numerical computations and plotting
+
+(a few more need to be added)
+
+---
+
+# Project Timeline
+
+## Week 1
+
+* Finalize project idea
+* Set up GitHub repository
+* Research SIR model equations
+
+## Week 2
+
+* Implement SIR differential equations
+* Create Euler solver
+
+## Week 3
+
+* Implement RK4 solver
+* Compare Euler vs RK4 simulations
+
+## Week 4
+
+* Generate SIR plots
+* Test different parameter values
+
+## Week 5
+
+* Add heatmap style visualizations
+* Investigate convergence and timestep effects
+
+## Week 6
+
+* Compare numerical accuracy between methods
+* Analyze stability and infection peaks
+
+## Week 7
+
+* Finalize plots and documentation
+* Complete report and explanations
+
+(subject to change)
+
+---
+
+# Current Progress Update
+
+At this stage of the project, the SIR equations and both numerical solvers have been implemented successfully. Euler’s Method and RK4 simulations are producing epidemic curves and comparison plots.
+
+One challenge was making the numerical solvers flexible enough to test different parameter values and timestep sizes. Initially, the code structure was too limited and difficult to reuse for multiple simulations. This was improved by turning the solvers into reusable functions with adjustable parameters.
+
+Another challenge involved numerical stability, particularly for Euler’s Method when larger timestep sizes were used. Testing smaller timestep values improved the accuracy and smoothness of the solutions.
+
+Current visualizations include:
+
+* SIR population trajectories
+* Euler vs RK4 comparison graphs
+* peak infection calculations
+* heatmap inspired visualizations
+
+---
+
+# Future Goals
+
+* Add real-world disease datasets
+* Compare numerical results to real epidemic behavior
+* Investigate convergence rates
+* Add SEIR models with exposed populations
+* Create animated epidemic visualizations
+* Study how timestep size affects numerical error
+
+---
+
+# LLM Disclosure
+
+The use of LLM tools such as ChatGPT and Claude.ai were used as assistant tools to help debug code, improve code organization, assist with visualization design, and explain numerical method implementation details.
